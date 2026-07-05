@@ -5,6 +5,6 @@ import com.example.cars.data.CarDto
 import retrofit2.http.GET
 
 interface CarApi {
-    @GET("/info")
+    @GET("info")
     suspend fun getCars(): ApiResponseDto<List<CarDto>>
 }

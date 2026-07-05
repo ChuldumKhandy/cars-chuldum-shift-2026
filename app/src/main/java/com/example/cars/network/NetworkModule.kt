@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
 object NetworkConstants {
-    const val BASE_URL = "https://juniorsbootcamp.ru/api/cars"
+    const val BASE_URL = "https://juniorsbootcamp.ru/api/cars/"
     const val TIMEOUT_SECONDS = 10L
     const val READ_TIMEOUT = 10L
     const val WRITE_TIMEOUT = 10L
