@@ -1,11 +1,11 @@
-package com.example.cars.data
+package com.example.cars.data.remote
 
-import com.example.cars.data.enums.CarBodyType
+import com.example.cars.data.remote.enums.CarBodyType
 import kotlinx.serialization.Serializable
-import com.example.cars.data.enums.CarBrand
-import com.example.cars.data.enums.CarColor
-import com.example.cars.data.enums.CarSteering
-import com.example.cars.data.enums.CarTransmission
+import com.example.cars.data.remote.enums.CarBrand
+import com.example.cars.data.remote.enums.CarColor
+import com.example.cars.data.remote.enums.CarSteering
+import com.example.cars.data.remote.enums.CarTransmission
 
 @Serializable
 data class CarDto(

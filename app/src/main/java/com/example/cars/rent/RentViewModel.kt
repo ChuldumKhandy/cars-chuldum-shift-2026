@@ -2,38 +2,35 @@ package com.example.cars.rent
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cars.network.api.CarApi
+import com.example.cars.data.CarRepository
+import com.example.cars.data.DataState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import okio.IOException
-import retrofit2.HttpException
+import com.example.cars.data.remote.CarDto
 
 class RentViewModel(
-    private val api: CarApi
+    private val repository: CarRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<RentUiState>(RentUiState.Idle)
     val uiState: StateFlow<RentUiState> = _uiState.asStateFlow()
 
     fun loadCars() {
-        viewModelScope.launch {
-            _uiState.value = RentUiState.Loading
-            _uiState.value = try {
-                val response = api.getCars()
+        if (_uiState.value is RentUiState.Success)
+            return
 
-                if (response.success) {
-                    RentUiState.Success(response.data)
-                } else {
-                    RentUiState.Error(response.reason)
+        viewModelScope.launch {
+            repository.getCars().collect { state ->
+                _uiState.value = when (state) {
+                    DataState.Loading -> RentUiState.Loading
+                    is DataState.Success -> RentUiState.Success(state.data)
+                    is DataState.Error -> RentUiState.Error(
+                        state.message,
+                        state.cachedData as? List<CarDto>
+                    )
                 }
-            } catch (e: IOException) {
-                RentUiState.Error("Нет подключения к сети")
-            } catch (e: HttpException) {
-                RentUiState.Error("Ошибка сервера: ${e.code()}")
-            } catch (e: Exception) {
-                RentUiState.Error(e.message ?: "Неизвестная ошибка")
             }
         }
     }

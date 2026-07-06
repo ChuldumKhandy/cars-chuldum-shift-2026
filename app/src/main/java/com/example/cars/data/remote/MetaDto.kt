@@ -1,4 +1,4 @@
-package com.example.cars.data
+package com.example.cars.data.remote
 
 import kotlinx.serialization.Serializable
 
@@ -7,4 +7,5 @@ data class MetaDto(
     val total: Int,
     val page: Int,
     val limit: Int,
-    val totalPages: Int)
+    val totalPages: Int
+)

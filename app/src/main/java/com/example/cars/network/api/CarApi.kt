@@ -1,7 +1,7 @@
 package com.example.cars.network.api
 
-import com.example.cars.data.ApiResponseDto
-import com.example.cars.data.CarDto
+import com.example.cars.data.remote.ApiResponseDto
+import com.example.cars.data.remote.CarDto
 import retrofit2.http.GET
 
 interface CarApi {

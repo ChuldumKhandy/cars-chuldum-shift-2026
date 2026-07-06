@@ -1,4 +1,4 @@
-package com.example.cars.data
+package com.example.cars.data.remote
 
 import kotlinx.serialization.Serializable
 
