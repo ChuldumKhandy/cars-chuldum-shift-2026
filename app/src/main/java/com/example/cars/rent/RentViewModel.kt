@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import com.example.cars.data.remote.CarDto
+import com.example.cars.data.domain.Car
 
 class RentViewModel(
     private val repository: CarRepository
@@ -28,7 +28,7 @@ class RentViewModel(
                     is DataState.Success -> RentUiState.Success(state.data)
                     is DataState.Error -> RentUiState.Error(
                         state.message,
-                        state.cachedData as? List<CarDto>
+                        state.cachedData as? List<Car>
                     )
                 }
             }

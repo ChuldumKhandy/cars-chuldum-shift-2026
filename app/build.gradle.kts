@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.okhttp.core)
     implementation(libs.okhttp.logging)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coil.compose)
 
     // Coroutines
     implementation(libs.coroutines.core)

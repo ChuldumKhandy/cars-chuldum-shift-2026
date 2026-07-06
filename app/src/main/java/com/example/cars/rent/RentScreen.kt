@@ -1,10 +1,8 @@
 package com.example.cars.rent
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,8 +15,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.cars.data.RepositoryModule
-import com.example.cars.data.remote.CarDto
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.foundation.lazy.items
 
@@ -71,22 +67,6 @@ fun RentScreen(modifier: Modifier = Modifier) {
                     CarItem(car)
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun CarItem(car: CarDto) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp)
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text = car.name,
-                style = MaterialTheme.typography.titleMedium
-            )
         }
     }
 }

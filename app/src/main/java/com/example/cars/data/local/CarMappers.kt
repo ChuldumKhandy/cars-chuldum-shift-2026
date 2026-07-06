@@ -1,5 +1,6 @@
 package com.example.cars.data.local
 
+import com.example.cars.data.domain.Car
 import kotlinx.serialization.json.Json
 import com.example.cars.data.remote.CarDto
 import com.example.cars.data.remote.CarMediaDto
@@ -9,6 +10,7 @@ import com.example.cars.data.remote.enums.CarBrand
 import com.example.cars.data.remote.enums.CarColor
 import com.example.cars.data.remote.enums.CarSteering
 import com.example.cars.data.remote.enums.CarTransmission
+import com.example.cars.network.NetworkConstants
 
 private val json = Json { ignoreUnknownKeys = true }
 
@@ -24,6 +26,23 @@ fun CarDto.toEntity(): CarEntity = CarEntity(
     bodyType = bodyType.name,
     steering = steering.name
 )
+
+fun CarDto.toDomain(): Car {
+    val cover = media.firstOrNull { it.isCover } ?: media.firstOrNull()
+
+    return Car(
+        id = id,
+        name = name,
+        brand = brand.name,
+        coverImageUrl = cover?.url?.let { NetworkConstants.MEDIA_BASE_URL + it },
+        transmission = transmission.name,
+        price = price,
+        location = location,
+        color = color.name,
+        bodyType = bodyType.name,
+        steering = steering.name
+    )
+}
 
 fun CarEntity.toDto(): CarDto = CarDto(
     id = id,

@@ -1,6 +1,8 @@
 package com.example.cars.data
 
+import com.example.cars.data.domain.Car
 import com.example.cars.data.local.CarDao
+import com.example.cars.data.local.toDomain
 import com.example.cars.data.local.toDto
 import com.example.cars.data.local.toEntity
 import com.example.cars.data.remote.CarDto
@@ -15,10 +17,10 @@ class CarRepository(
     private val dao: CarDao
 ) {
 
-    fun getCars(): Flow<DataState<List<CarDto>>> = flow {
+    fun getCars(): Flow<DataState<List<Car>>> = flow {
         emit(DataState.Loading)
 
-        val cached = dao.getCars().map { it.toDto() }
+        val cached = dao.getCars().map { it.toDto().toDomain() }
 
         if (cached.isNotEmpty()) {
             emit(DataState.Success(cached))
@@ -30,7 +32,7 @@ class CarRepository(
             if (response.success) {
                 dao.clear()
                 dao.insertCars(response.data.map { it.toEntity() })
-                emit(DataState.Success(response.data))
+                emit(DataState.Success(response.data.map { it.toDomain() }))
             } else {
                 emit(DataState.Error(response.reason ?: "Ошибка сервера", cached.ifEmpty { null }))
             }
