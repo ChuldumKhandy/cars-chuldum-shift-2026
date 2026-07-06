@@ -1,4 +1,4 @@
-package com.example.cars.ui.theme
+package com.example.cars.core.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
