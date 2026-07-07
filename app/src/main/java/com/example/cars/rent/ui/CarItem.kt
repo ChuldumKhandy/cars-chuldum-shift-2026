@@ -1,42 +1,60 @@
 package com.example.cars.rent.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.cars.core.ui.theme.imageBg
 import com.example.cars.rent.domain.Car
 
 @Composable
-fun CarItem(car: Car) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp)
+fun CarItem(
+    car: Car,
+    rentalDays: Long,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier
+        .fillMaxWidth()
+        .padding(top = 40.dp)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            AsyncImage(
-                model = car.coverImageUrl,
-                contentDescription = car.name,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(64.dp),
-                contentScale = ContentScale.Crop
-            )
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text(text = car.name, style = MaterialTheme.typography.titleMedium)
-                Text(
-                    text = "${car.price} ₽",
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
+        AsyncImage(
+            model = car.coverImageUrl,
+            contentDescription = car.name,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(126.dp)
+                .background(imageBg, RoundedCornerShape(24.dp))
+                .clip(RoundedCornerShape(24.dp)),
+            contentScale = ContentScale.Fit
+        )
+
+        val transmissionLabel = when (car.transmission.lowercase()) {
+            "automatic" -> "Автомат"
+            "manual" -> "Механика"
+            else -> car.transmission
         }
+        val engineVolume = extractEngineVolume(car.name)
+
+        CarInfoBlock(
+            title = car.name,
+            subtitle = if (engineVolume != null) {
+                "$transmissionLabel, $engineVolume л"
+            } else {
+                transmissionLabel
+            }
+        )
+
+        CarInfoBlock(
+            title = "${car.price} ₽",
+            subtitle = "${car.price * rentalDays} ₽ за $rentalDays дней"
+        )
     }
 }

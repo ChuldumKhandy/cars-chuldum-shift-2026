@@ -54,7 +54,10 @@ fun RentScreen(modifier: Modifier = Modifier) {
                     )
                     LazyColumn(modifier = modifier.padding(16.dp)) {
                         items(state.cachedCars) { car ->
-                            CarItem(car)
+                            CarItem(
+                                car,
+                                rentalDays = 14 //TODO()
+                            )
                         }
                     }
                 }
@@ -66,7 +69,10 @@ fun RentScreen(modifier: Modifier = Modifier) {
                 modifier = modifier.padding(16.dp)
             ) {
                 items(state.cars) { car ->
-                    CarItem(car)
+                    CarItem(
+                        car,
+                        rentalDays = 14 //TODO()
+                    )
                 }
             }
         }
