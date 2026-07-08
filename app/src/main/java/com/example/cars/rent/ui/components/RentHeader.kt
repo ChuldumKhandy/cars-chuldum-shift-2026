@@ -11,7 +11,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.cars.R
 import com.example.cars.core.ui.theme.primary
 
 @Composable
@@ -33,7 +35,7 @@ fun RentHeader(
         Spacer(Modifier.height(32.dp))
 
         Text(
-            text = "Аренда машины",
+            text = stringResource(R.string.rent_title),
             style = MaterialTheme.typography.titleMedium,
             color = primary
         )
@@ -49,7 +51,7 @@ fun RentHeader(
         Spacer(Modifier.height(20.dp))
 
         DateField(
-            label = "Начало аренды",
+            label = stringResource(R.string.rent_start_date),
             value = startDate,
             onClick = onTapStartDate
         )
@@ -57,7 +59,7 @@ fun RentHeader(
         Spacer(Modifier.height(16.dp))
 
         DateField(
-            label = "Окончание аренды",
+            label = stringResource(R.string.rent_end_date),
             value = endDate,
             onClick = onTapEndDate
         )
@@ -75,7 +77,7 @@ fun RentHeader(
             )
         ) {
             Text(
-                "Найти машину",
+                stringResource(R.string.find_car),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onPrimary
             )

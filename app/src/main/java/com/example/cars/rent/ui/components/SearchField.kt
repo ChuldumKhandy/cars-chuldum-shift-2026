@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.cars.R
 
@@ -34,7 +35,7 @@ fun SearchField(
 
     Column {
 
-        FieldHeader("Поиск")
+        FieldHeader(stringResource(R.string.search))
 
         Spacer(Modifier.height(4.dp))
 
@@ -73,7 +74,7 @@ fun SearchField(
 
                             if (value.isEmpty()) {
                                 Text(
-                                    "Модель машины",
+                                    stringResource(R.string.search_placeholder),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.outline
                                 )

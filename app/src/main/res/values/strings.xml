@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">cars-chuldum-shift-2026</string>
+    <string name="app_name">Аренда машин</string>
+
+    <string name="rent_title">Аренда машины</string>
+    <string name="search">Поиск</string>
+    <string name="search_placeholder">Модель машины</string>
+    <string name="rent_start_date">Начало аренды</string>
+    <string name="rent_end_date">Окончание аренды</string>
+    <string name="find_car">Найти машину</string>
+    <string name="manual">Механика</string>
+    <string name="automatic">Автомат</string>
+    <string name="car_price">%1$d ₽</string>
+    <string name="rent_price">%1$d ₽ за %2$d дней</string>
+    <string name="engine_volume">"%1$d, %2$d л"</string>
+
 </resources>

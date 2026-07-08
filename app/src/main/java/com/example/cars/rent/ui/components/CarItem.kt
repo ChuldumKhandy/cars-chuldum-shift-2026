@@ -10,8 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.cars.R
 import com.example.cars.core.ui.theme.imageBg
 import com.example.cars.rent.domain.Car
 import com.example.cars.rent.ui.extractEngineVolume
@@ -38,8 +40,8 @@ fun CarItem(
         )
 
         val transmissionLabel = when (car.transmission.lowercase()) {
-            "automatic" -> "Автомат"
-            "manual" -> "Механика"
+            "automatic" -> stringResource(R.string.automatic)
+            "manual" -> stringResource(R.string.manual)
             else -> car.transmission
         }
         val engineVolume = extractEngineVolume(car.name)
@@ -47,15 +49,17 @@ fun CarItem(
         CarInfoBlock(
             title = car.name,
             subtitle = if (engineVolume != null) {
-                "$transmissionLabel, $engineVolume л"
+                stringResource(R.string.engine_volume, transmissionLabel, engineVolume)
             } else {
                 transmissionLabel
             }
         )
 
+        val rentalPrice =  car.price * rentalDays
+
         CarInfoBlock(
-            title = "${car.price} ₽",
-            subtitle = "${car.price * rentalDays} ₽ за $rentalDays дней"
+            title = stringResource(R.string.car_price, car.price),
+            subtitle = stringResource(R.string.rent_price, rentalPrice, rentalDays)
         )
     }
 }
