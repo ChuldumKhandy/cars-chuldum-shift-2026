@@ -1,4 +1,4 @@
-package com.example.cars.rent.ui
+package com.example.cars.rent.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -20,7 +20,7 @@ fun CarInfoBlock(
         Text(
             text = title,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.secondary
+            color = MaterialTheme.colorScheme.tertiary
         )
 
         Text(

@@ -1,4 +1,4 @@
-package com.example.cars.rent.ui
+package com.example.cars.rent.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.cars.core.ui.theme.imageBg
 import com.example.cars.rent.domain.Car
+import com.example.cars.rent.ui.extractEngineVolume
 
 @Composable
 fun CarItem(

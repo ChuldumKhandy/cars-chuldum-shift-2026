@@ -15,8 +15,9 @@ private val DarkColorScheme = darkColorScheme(
     primary = primary,
     onPrimary = primaryForeground,
     surface = surface,
-    secondary = foreground,
-    tertiary = input
+    secondary = secondary,
+    tertiary = foreground,
+    outline  = input
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -24,21 +25,23 @@ private val LightColorScheme = lightColorScheme(
     primary = primary,
     onPrimary = primaryForeground,
     surface = surface,
-    secondary = foreground,
-    tertiary = input
+    secondary = secondary,
+    tertiary = foreground,
+    outline  = input
 )
 
 @Composable
 fun Carschuldumshift2026Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (darkTheme) dynamicDarkColorScheme(context)
+            else dynamicLightColorScheme(context)
         }
 
         darkTheme -> DarkColorScheme
