@@ -19,6 +19,9 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.cars.rent.data.repository.RepositoryModule
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.res.stringResource
+import com.example.cars.R
+import com.example.cars.core.DataError
 import com.example.cars.rent.presentation.RentUiState
 import com.example.cars.rent.presentation.RentViewModel
 import com.example.cars.rent.ui.components.CarItem
@@ -50,7 +53,14 @@ fun RentScreen(modifier: Modifier = Modifier) {
 
         is RentUiState.Error -> {
             Column {
-                Text("Ошибка: ${state.message}")
+                val message = when (state.error) {
+                    DataError.Network -> stringResource(R.string.error_network)
+                    is DataError.Server -> stringResource(R.string.error_server)
+                    is DataError.Http -> stringResource(R.string.error_http, state.error.code)
+                    is DataError.Unknown -> stringResource(R.string.error_unknown)
+                }
+
+                Text("Ошибка: ${message}")
                 if (!state.cachedCars.isNullOrEmpty()) {
                     Text(
                         text = "Показаны сохранённые данные",

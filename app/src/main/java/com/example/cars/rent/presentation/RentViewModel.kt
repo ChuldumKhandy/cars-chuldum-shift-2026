@@ -27,12 +27,11 @@ class RentViewModel(
                     DataState.Loading -> RentUiState.Loading
                     is DataState.Success -> RentUiState.Success(state.data)
                     is DataState.Error -> RentUiState.Error(
-                        state.message,
+                        state.error,
                         state.cachedData as? List<Car>
                     )
                 }
             }
         }
     }
-
 }

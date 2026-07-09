@@ -1,5 +1,6 @@
 package com.example.cars.rent.data.repository
 
+import com.example.cars.core.DataError
 import com.example.cars.core.DataState
 import com.example.cars.rent.domain.Car
 import com.example.cars.rent.data.local.CarDao
@@ -34,14 +35,14 @@ class CarRepository(
                 dao.insertCars(response.data.map { it.toEntity() })
                 emit(DataState.Success(response.data.map { it.toDomain() }))
             } else {
-                emit(DataState.Error(response.reason ?: "Ошибка сервера", cached.ifEmpty { null }))
+                emit(DataState.Error(DataError.Server(response.reason), cached.ifEmpty { null }))
             }
         } catch (_: IOException) {
-            emit(DataState.Error("Нет подключения к сети", cached.ifEmpty { null }))
+            emit(DataState.Error(DataError.Network, cached.ifEmpty { null }))
         } catch (e: HttpException) {
-            emit(DataState.Error("Ошибка сервера: ${e.code()}", cached.ifEmpty { null }))
+            emit(DataState.Error(DataError.Http(e.code()), cached.ifEmpty { null }))
         } catch (e: Exception) {
-            emit(DataState.Error(e.message ?: "Неизвестная ошибка", cached.ifEmpty { null }))
+            emit(DataState.Error(DataError.Unknown(e), cached.ifEmpty { null }))
         }
     }
 }

@@ -11,6 +11,11 @@
     <string name="automatic">Автомат</string>
     <string name="car_price">%1$d ₽</string>
     <string name="rent_price">%1$d ₽ за %2$d дней</string>
-    <string name="engine_volume">"%1$d, %2$d л"</string>
+    <string name="engine_volume">"%1$s, %2$s л"</string>
+
+    <string name="error_network">Нет подключения к сети</string>
+    <string name="error_http">Ошибка сервера: %1$d</string>
+    <string name="error_server">Ошибка сервера</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
 
 </resources>
