@@ -1,4 +1,4 @@
-package com.example.cars.network
+package com.example.cars.core.network
 
 import com.example.cars.rent.data.remote.CarApi
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory

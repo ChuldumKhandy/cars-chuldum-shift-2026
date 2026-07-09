@@ -1,4 +1,4 @@
-package com.example.cars.network
+package com.example.cars.core.network
 
 object NetworkConstants {
     const val BASE_URL = "https://juniorsbootcamp.ru/api/cars/"
